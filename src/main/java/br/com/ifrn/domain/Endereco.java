@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Endereco implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -22,9 +24,11 @@ public class Endereco implements Serializable {
 	private String bairro;
 	private String cep;
 	
+	@JsonBackReference
 	@ManyToOne //(Vários clientes têm um mesmo endereço)
 	@JoinColumn(name="cliente_id") //Nome da chave estrangeira
 	private Cliente cliente;
+	
 	
 	@ManyToOne //(1 cidade tem vários endreços)
 	@JoinColumn(name="cidade_id")
